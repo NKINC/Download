@@ -1,0 +1,8 @@
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Portable\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Portable\YoutubeExtractor.pdb
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Portable\YoutubeExtractor.xml
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Portable\Newtonsoft.Json.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Portable\Newtonsoft.Json.xml
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Portable\YoutubeExtractor_Portable.csprojResolveAssemblyReference.cache
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Portable\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Portable\YoutubeExtractor.pdb

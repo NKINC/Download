@@ -1,0 +1,17 @@
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.xml
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.pdb
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Full\Newtonsoft.Json.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\bin\Release\Full\Newtonsoft.Json.xml
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csprojResolveAssemblyReference.cache
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\YoutubeExtractor-master\YoutubeExtractor-master\YoutubeExtractor\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.pdb
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.xml
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\Release\Full\YoutubeExtractor.pdb
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\Release\Full\Newtonsoft.Json.dll
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\Release\Full\Newtonsoft.Json.xml
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csproj.CopyComplete
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.dll
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.pdb
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csprojAssemblyReference.cache
