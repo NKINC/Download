@@ -1,0 +1,29 @@
+' Youtube Explode
+'https://github.com/Tyrrrz/YoutubeExplode
+'https://www.nuget.org/packages/YoutubeExplode/4.7.0-alpha
+
+Private url = "https://www.youtube.com/watch?v=bnsUkE8i0tU"
+    Private id = YoutubeClient.ParseVideoId(url)
+    Private client = New YoutubeClient()
+    Private video = Await client.GetVideoAsync("bnsUkE8i0tU")
+    Private title = video.Title
+    Private author = video.Author
+    Private duration = video.Duration
+    Private client = New YoutubeClient()
+    Private streamInfoSet = Await client.GetVideoMediaStreamInfosAsync("bnsUkE8i0tU")
+    Private streamInfo = streamInfoSet.Muxed.WithHighestVideoQuality()
+    Private ext = streamInfo.Container.GetFileExtension()
+    Private Function DownloadMediaStreamAsync(ByVal _ As streamInfo, ByVal _ As _) As await
+    Private client = New YoutubeClient()
+    Private trackInfos = Await client.GetVideoClosedCaptionTrackInfosAsync("_QdPW8JrYzQ")
+    Private trackInfo = trackInfos.First(Function(t) t.Language.Code = "en")
+    Private track = Await client.GetClosedCaptionTrackAsync(trackInfo)
+    Private caption = track.GetByTime(TimeSpan.FromSeconds(61))
+    Private text = caption.Text
+    Private client = New YoutubeClient()
+    Private playlist = Await client.GetPlaylistAsync("PLQLqnnnfa_fAkUmMFw5xh8Kv0S5voEjC9")
+    Private title = playlist.Title
+    Private author = playlist.Author
+    Private video = playlist.Videos.First()
+    Private videoTitle = video.Title
+    Private videoAuthor = video.Author
