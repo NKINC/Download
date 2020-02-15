@@ -7,7 +7,7 @@ http://www.nk-inc.com/downloads/fn/Youtube-Download-binaries.zip
 Intended for backing up your own videos on youtube.<br/>
 <br/>
 LICENSE:<br/>
-Feel FREE to use at your own risk!<br/>
+Feel FREE to use it at your own risk!<br/>
 <br/>
 <br/>
 <br/>
