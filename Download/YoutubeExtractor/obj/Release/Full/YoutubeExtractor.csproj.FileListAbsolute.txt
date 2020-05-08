@@ -14,4 +14,4 @@ F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\bin\
 F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csproj.CopyComplete
 F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.dll
 F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.pdb
-F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csprojAssemblyReference.cache
+F:\Data\PROGRAMMING\VS.Net\2019\Download\Download\Download\YoutubeExtractor\obj\Release\Full\YoutubeExtractor.csproj.CoreCompileInputs.cache
