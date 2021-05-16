@@ -270,6 +270,7 @@ namespace YoutubeExtractor
                 return regex.Match(js).Result("$1");
             } catch(Exception e)
             {
+                string emsg = e.Message;
                 return "";
             }
         }
