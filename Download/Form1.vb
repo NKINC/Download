@@ -113,7 +113,7 @@ Public Class Form1
         Public Height As Integer
         Public VideoQuality As YoutubeExplode.Videos.Streams.VideoQuality 'YoutubeExplode.Models.MediaStreams.VideoQuality
         Public VideoQualityLabel As String
-        Public VideoEncoding As YoutubeExplode.Videos.Streams.VideoResolution 'YoutubeExplode.Models.MediaStreams.VideoEncoding
+        'Public VideoEncoding As YoutubeExplode.Videos.Streams.VideoQualit 'YoutubeExplode.Models.MediaStreams.VideoEncoding
         Public MuxStreamInfoObject As YoutubeExplode.Videos.Streams.MuxedStreamInfo 'YoutubeExplode.Videos.Streams.VideoStreamInfoExtensions 'YoutubeExplode.Models.MediaStreams.MuxedStreamInfo
         Public downloadURL As String
     End Structure
@@ -179,17 +179,21 @@ Public Class Form1
             'Dim id As String = YoutubeExplode.YoutubeClient.ParseVideoId(txtYoutubeURL.Text.Trim())
             'Dim client As New YoutubeExplode.YoutubeClient()
             Dim youtube As New YoutubeExplode.YoutubeClient()
-            Dim video = Await youtube.Videos.GetAsync((txtYoutubeURL.Text.Trim()))
-            Dim id As String = video.Id
+            'Dim video = Await youtube.Videos.GetAsync((txtYoutubeURL.Text.Trim()))
+            Dim id As New YoutubeExplode.Videos.VideoId()
+            id = (txtYoutubeURL.Text.Trim())
+            Dim video As YoutubeExplode.Videos.Video = Await youtube.Videos.GetAsync(id)
+            'Dim id As String = video.Id
+            id = video.Id
             Dim streamManifest = Await youtube.Videos.Streams.GetManifestAsync(id)
             'Dim videoTask As Task(Of YoutubeExplode.Videos.Streams.) = client.GetVideoAsync(id)
             'Dim video As YoutubeExplode.Models.Video = Await videoTask
             'Dim video As YoutubeExplode.Videos.Streams.MuxedStreamInfo = client ' = Await videoTask
             '// Get highest quality muxed stream
-            Dim streamInfo As List(Of YoutubeExplode.Videos.Streams.MuxedStreamInfo) = streamManifest.GetMuxed.ToList
+            Dim streamInfo As List(Of YoutubeExplode.Videos.Streams.MuxedStreamInfo) = streamManifest.GetMuxedStreams.ToList
             If videoFormat1 Is Nothing Or videoFormat1 Is Nothing Then
                 cmbFormat.Items.Clear()
-                cmbResolution.Items.Clear()
+                'cmbResolution.Items.Clear()
             End If
             Dim resHighest As Integer = 0
 
@@ -215,28 +219,28 @@ Public Class Form1
 
             For Each streamResolution As YoutubeExplode.Videos.Streams.MuxedStreamInfo In streamInfo.ToArray()
                 'Dim mediaFormat As String = YoutubeExplode.Models.MediaStreams.Extensions.GetFileExtension(streamResolution.Container).ToString.ToLower()
-                Dim mediaFormat As YoutubeExplode.Videos.Streams.VideoResolution = streamResolution.Resolution
+                Dim mediaFormat As YoutubeExplode.Common.Resolution = streamResolution.VideoResolution
                 If streamResolution.Container = YoutubeExplode.Videos.Streams.Container.Mp4 Then 'mediaFormats.Contains(mediaFormat) Or mediaFormats.Contains(".*") Then
                     Dim videStruc As New strucVideo()
                     videStruc.Title = video.Title
                     videStruc.Format = streamResolution.Container.ToString() 'mediaFormat.Height.ToString
                     videStruc.MuxStreamInfoObject = streamResolution
                     videStruc.Description = video.Description
-                    videStruc.Author = video.Author
+                    videStruc.Author = video.Author.Title
                     videStruc.Duration = video.Duration
                     videStruc.Id = video.Id.ToString
-                    videStruc.Width = streamResolution.Resolution.Width
-                    videStruc.VideoQualityLabel = streamResolution.VideoQualityLabel
-                    videStruc.Height = streamResolution.Resolution.Height
+                    videStruc.Width = mediaFormat.Width
+                    videStruc.VideoQualityLabel = streamResolution.VideoQuality.Label
+                    videStruc.Height = mediaFormat.Height
                     videStruc.Keywords = video.Keywords.ToList()
                     videStruc.UploadDate = video.UploadDate
                     videStruc.VideoQuality = streamResolution.VideoQuality
-                    videStruc.VideoEncoding = streamResolution.Resolution
+                    'videStruc.VideoEncoding = streamResolution.VideoCodec
                     videoInfosTemp1.Add(videStruc)
-                    Dim vidInfo As New YoutubeExtractor.VideoInfo(YoutubeExtractor.VideoType.Mp4, video.Title, streamResolution.Url, streamResolution.Resolution.Height)
+                    Dim vidInfo As New YoutubeExtractor.VideoInfo(YoutubeExtractor.VideoType.Mp4, video.Title, streamResolution.Url, mediaFormat.Height)
                     If Not videoFormat1 Is Nothing And Not videoFormat1 Is Nothing Then
                         If videStruc.Format = videoFormat1 Then 'cmbFormat.Items(cmbFormat.SelectedIndex).ToString() Then
-                            If streamResolution.Resolution.Height.ToString() = videoResolution1 Then
+                            If mediaFormat.Height.ToString() = videoResolution1 Then
                                 Dim output As New System.Collections.Generic.List(Of strucVideo)
                                 videStruc.downloadURL = vidInfo.DownloadUrl.ToString()
                                 output.Add(videStruc)
@@ -262,21 +266,40 @@ Public Class Form1
                     If streamMaxResolution Is Nothing Then
                         'streamInfo = streamResolution
                         streamMaxResolution = streamResolution 'streamInfo
-                    ElseIf streamResolution.Resolution.Height >= streamMaxResolution.Resolution.Height Then
+                    ElseIf mediaFormat.Height >= mediaFormat.Height Then
                         'streamInfo = streamResolution
                         streamMaxResolution = streamResolution 'streamInfo
                     End If
-                    If Not cmbResolution.Items.Contains(streamResolution.VideoQualityLabel.ToString()) Then
+                    'cmbResolution.Items.Clear()
+                    If Not cmbResolution.Items.Contains("144p") Then cmbResolution.Items.Add("144p")
+                    If Not cmbResolution.Items.Contains("240p") Then cmbResolution.Items.Add("240p")
+                    If Not cmbResolution.Items.Contains("360p") Then cmbResolution.Items.Add("360p")
+                    If Not cmbResolution.Items.Contains("480p") Then cmbResolution.Items.Add("480p")
+                    If Not cmbResolution.Items.Contains("720p") Then cmbResolution.Items.Add("720p")
+                    If Not cmbResolution.Items.Contains("1080p") Then cmbResolution.Items.Add("1080p")
+                    If Not cmbResolution.Items.Contains("1440p") Then cmbResolution.Items.Add("1440p")
+                    If Not cmbResolution.Items.Contains("2160p") Then cmbResolution.Items.Add("2160p")
+                    If Not cmbResolution.Items.Contains("2880p") Then cmbResolution.Items.Add("2880p")
+                    If Not cmbResolution.Items.Contains("3072p") Then cmbResolution.Items.Add("3072p")
+                    If Not cmbResolution.Items.Contains("4320p") Then cmbResolution.Items.Add("4320p")
+                    If Not cmbResolution.Items.Contains(mediaFormat.Height.ToString() & "p") Then
                         If videoFormat1 Is Nothing Or videoFormat1 Is Nothing Then
-                            cmbResolution.Items.Add(streamResolution.VideoQualityLabel.ToString())
+                            cmbResolution.Items.Add(mediaFormat.Height.ToString() & "p")
                         End If
-                        If CInt(streamResolution.Resolution.Height.ToString()) >= resHighest Then
-                            resHighest = CInt(streamResolution.Resolution.Height.ToString())
+                        If CInt(mediaFormat.Height.ToString()) >= resHighest Then
+                            resHighest = CInt(mediaFormat.Height.ToString())
                             If videoFormat1 Is Nothing Or videoFormat1 Is Nothing Then
                                 cmbResolution.SelectedIndex = cmbResolution.Items.Count - 1
                             End If
                         End If
                     End If
+                    Try
+                        'If cmbResolution.SelectedIndex < 0 Then
+                        cmbResolution.SelectedIndex = cmbResolution.Items.IndexOf(mediaFormat.Height.ToString() & "p")
+                        'End If
+                    Catch ex As Exception
+                        Err.Clear()
+                    End Try
                 End If
             Next
             Return videoInfosTemp1
@@ -292,7 +315,7 @@ Public Class Form1
             'Dim id As String = YoutubeExplode.YoutubeClient.ParseVideoId(txtYoutubeURL.Text.Trim())
             'Dim client As New YoutubeExplode.YoutubeClient()
             Dim youtube As New YoutubeExplode.YoutubeClient()
-            Dim videoTask As Task(Of YoutubeExplode.Videos.Video) = youtube.Videos.GetAsync((txtYoutubeURL.Text.Trim()))
+            Dim videoTask As ValueTask(Of YoutubeExplode.Videos.Video) = youtube.Videos.GetAsync((txtYoutubeURL.Text.Trim()))
             Do While (Not videoTask.IsCompleted And Not videoTask.IsCanceled And Not videoTask.IsFaulted)
                 Application.DoEvents()
             Loop
@@ -307,7 +330,7 @@ Public Class Form1
             'Dim video As YoutubeExplode.Models.Video = Await videoTask
             'Dim video As YoutubeExplode.Videos.Streams.MuxedStreamInfo = client ' = Await videoTask
             '// Get highest quality muxed stream
-            Dim streamInfo As List(Of YoutubeExplode.Videos.Streams.MuxedStreamInfo) = streamManifest.Result.GetMuxed.ToList() 'streamManifest.GetMuxed.ToList
+            Dim streamInfo As List(Of YoutubeExplode.Videos.Streams.MuxedStreamInfo) = streamManifest.Result.GetMuxedStreams.ToList() 'streamManifest.GetMuxedStreams.ToList
 
             'cmbFormat.Items.Clear()
             'cmbResolution.Items.Clear()
@@ -336,32 +359,32 @@ Public Class Form1
 
             For Each streamResolution As YoutubeExplode.Videos.Streams.MuxedStreamInfo In streamInfo.ToArray()
                 'Dim mediaFormat As String = YoutubeExplode.Models.MediaStreams.Extensions.GetFileExtension(streamResolution.Container).ToString.ToLower()
-                Dim mediaFormat As YoutubeExplode.Videos.Streams.VideoResolution = streamResolution.Resolution
+                Dim mediaFormat As YoutubeExplode.Common.Resolution = streamResolution.VideoResolution
                 'If streamResolution.Container = YoutubeExplode.Videos.Streams.Container.Mp4 Then 'mediaFormats.Contains(mediaFormat) Or mediaFormats.Contains(".*") Then
                 Dim videStruc As New strucVideo()
                 videStruc.Title = video.Title
                 videStruc.Format = streamResolution.Container.ToString() 'mediaFormat.Height.ToString
                 videStruc.MuxStreamInfoObject = streamResolution
                 videStruc.Description = video.Description
-                videStruc.Author = video.Author
+                videStruc.Author = video.Author.Title
                 videStruc.Duration = video.Duration
                 videStruc.Id = video.Id.ToString
-                videStruc.Width = streamResolution.Resolution.Width
-                videStruc.VideoQualityLabel = streamResolution.VideoQualityLabel
-                videStruc.Height = streamResolution.Resolution.Height
+                videStruc.Width = mediaFormat.Width
+                videStruc.VideoQualityLabel = streamResolution.VideoQuality.Label
+                videStruc.Height = mediaFormat.Height
                 videStruc.Keywords = video.Keywords.ToList()
                 videStruc.UploadDate = video.UploadDate
                 videStruc.VideoQuality = streamResolution.VideoQuality
-                videStruc.VideoEncoding = streamResolution.Resolution
+                'videStruc.VideoEncoding = streamResolution.Resolution
                 If videStruc.Format = cmbFormat.Items(cmbFormat.SelectedIndex).ToString() Then
-                    If streamResolution.Resolution.Height.ToString() = cmbResolution.Items(cmbResolution.SelectedIndex).ToString() Then
+                    If mediaFormat.Height.ToString() = cmbResolution.Items(cmbResolution.SelectedIndex).ToString() Then
                         Dim output As New System.Collections.Generic.List(Of strucVideo)
                         output.Add(videStruc)
                         Return output
                     End If
                 End If
                 videoInfosTemp2.Add(videStruc)
-                'Dim vidInfo As New YoutubeExtractor.VideoInfo(YoutubeExtractor.VideoType.Mp4, video.Title, streamResolution.Url, streamResolution.Resolution.Height)
+                'Dim vidInfo As New YoutubeExtractor.VideoInfo(YoutubeExtractor.VideoType.Mp4, video.Title, streamResolution.Url, mediaFormat.Height)
                 'Dim streamMaxResolution As YoutubeExplode.Videos.Streams.MuxedStreamInfo = Nothing 'YoutubeExplode.Videos.Streams.VideoStreamInfoExtensions = Nothing
                 'If Not cmbFormat.Items.Contains(videStruc.Format.ToString()) Then
                 '    cmbFormat.Items.Add(videStruc.Format.ToString())
@@ -376,15 +399,15 @@ Public Class Form1
                 'If streamMaxResolution Is Nothing Then
                 '    'streamInfo = streamResolution
                 '    streamMaxResolution = streamResolution 'streamInfo
-                'ElseIf streamResolution.Resolution.Height >= streamMaxResolution.Resolution.Height Then
+                'ElseIf mediaFormat.Height >= streamMaxResolution.Resolution.Height Then
                 '    'streamInfo = streamResolution
                 '    streamMaxResolution = streamResolution 'streamInfo
                 'End If
                 'If Not cmbResolution.Items.Contains(streamResolution.VideoQualityLabel.ToString()) Then
                 '    cmbResolution.Items.Add(streamResolution.VideoQualityLabel.ToString())
 
-                '    If CInt(streamResolution.Resolution.Height.ToString()) >= resHighest Then
-                '        resHighest = CInt(streamResolution.Resolution.Height.ToString())
+                '    If CInt(mediaFormat.Height.ToString()) >= resHighest Then
+                '        resHighest = CInt(mediaFormat.Height.ToString())
                 '        cmbResolution.SelectedIndex = cmbResolution.Items.Count - 1
                 '    End If
                 'End If
@@ -543,9 +566,9 @@ Public Class Form1
             Button1.Visible = True
             Button3.Visible = True
             Label1.Text = "Status: Success - Click a download button to procceed."
-            Label1.Text &= Environment.NewLine & "File Size: " & CInt(CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes) / CInt(1024) / CInt(1024)) & " MB"
-            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes / 1024 / 1024)
-            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes)
+            Label1.Text &= Environment.NewLine & "File Size: " & CInt(CInt(videoMax.MuxStreamInfoObject.Size.Bytes) / CInt(1024) / CInt(1024)) & " MB"
+            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.Bytes / 1024 / 1024)
+            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.Bytes)
             '    End If
             'End If
         Catch ex As Exception
@@ -590,7 +613,7 @@ Public Class Form1
 
     Public Shared Function isUrlValid(ByVal s As String) As Boolean
         Try
-            Dim u As Uri
+            Dim u As Uri = Nothing
             If Uri.TryCreate(s, UriKind.Absolute, u) Then
                 If Uri.IsWellFormedUriString(s, UriKind.Absolute) Then
                     If u.Host.ToString.ToLower.Contains("youtube.com".ToLower) Then
@@ -657,9 +680,9 @@ Public Class Form1
                             Button1.Visible = True
                             Button3.Visible = True
                             Label1.Text = "Status: Success - Click a download button to procceed."
-                            Label1.Text &= Environment.NewLine & "File Size: " & CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes / 1024 / 1024) & " MB"
-                            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes / 1024 / 1024)
-                            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes)
+                            Label1.Text &= Environment.NewLine & "File Size: " & CInt(videoMax.MuxStreamInfoObject.Size.Bytes / 1024 / 1024) & " MB"
+                            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.Bytes / 1024 / 1024)
+                            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.Bytes)
                         End If
                     Catch ex2 As Exception
                         Err.Clear()
@@ -694,9 +717,9 @@ Public Class Form1
             Button1.Visible = True
             Button3.Visible = True
             Label1.Text = "Status: Success - Click a download button to procceed."
-            Label1.Text &= Environment.NewLine & "File Size: " & CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes / 1024 / 1024) & " MB"
-            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes / 1024 / 1024)
-            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.TotalBytes)
+            Label1.Text &= Environment.NewLine & "File Size: " & CInt(videoMax.MuxStreamInfoObject.Size.Bytes / 1024 / 1024) & " MB"
+            fileSizeMegaBytes = CInt(videoMax.MuxStreamInfoObject.Size.Bytes / 1024 / 1024)
+            videoBytesLength = CInt(videoMax.MuxStreamInfoObject.Size.Bytes)
         Catch ex As Exception
             Err.Clear()
         End Try
@@ -711,6 +734,15 @@ Public Class Form1
                 Process.Start(txtYoutubeURL.Text)
                 btnInfo_Click(Me, New EventArgs)
             End If
+        Catch ex As Exception
+            Err.Clear()
+        End Try
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            Dim ur1 As String = "http://192.168.1.182:55666/player.aspx?video=" & CStr(System.Web.HttpUtility.UrlEncode(System.IO.Path.GetFileName(txtFileName.Text) & "") & "") & ""
+            Process.Start(ur1)
         Catch ex As Exception
             Err.Clear()
         End Try
